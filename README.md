@@ -32,6 +32,7 @@ NestJS, Sequelize va PostgreSQL asosida qurilgan backend tizim. Bu API orqali ad
   "password_hash": "hashed_password123",
   "is_active": true
 }
+```json
 
 
 #### Va boshqalar...
