@@ -1,4 +1,12 @@
-import { Column, DataType, Model, Table } from "sequelize-typescript";
+import {
+  BelongsToMany,
+  Column,
+  DataType,
+  Model,
+  Table,
+} from "sequelize-typescript";
+import { Users } from "../../users/models/user.model";
+import { SocialUser } from "../../social-user/models/social-user.model";
 
 interface ISocialCreationAttr {
   name: string;
@@ -25,4 +33,7 @@ export class Social extends Model<Social, ISocialCreationAttr> {
     type: DataType.STRING,
   })
   icon: string;
+
+  @BelongsToMany(() => Users, () => SocialUser)
+  users: Users[];
 }

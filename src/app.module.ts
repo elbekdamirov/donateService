@@ -2,9 +2,20 @@ import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 import { SequelizeModule } from "@nestjs/sequelize";
 import { SocialModule } from "./social/social.module";
-import { CategoriesModule } from './categories/categories.module';
-import { CourierModule } from './courier/courier.module';
-import { AdminsModule } from './admins/admins.module';
+import { CategoriesModule } from "./categories/categories.module";
+import { CourierModule } from "./courier/courier.module";
+import { AdminsModule } from "./admins/admins.module";
+import { UsersModule } from "./users/users.module";
+import { Social } from "./social/models/social.model";
+import { Categories } from "./categories/models/categories.model";
+import { Courier } from "./courier/models/courier.model";
+import { Admins } from "./admins/models/admins.model";
+import { Users } from "./users/models/user.model";
+import { SocialUserModule } from "./social-user/social-user.module";
+import { SocialUser } from "./social-user/models/social-user.model";
+import { DonationsModule } from "./donations/donations.module";
+import { Donations } from "./donations/models/donation.model";
+import { NotificationsModule } from './notifications/notifications.module';
 
 @Module({
   imports: [
@@ -20,7 +31,15 @@ import { AdminsModule } from './admins/admins.module';
       username: process.env.PG_USER,
       password: process.env.PG_PASSWORD,
       database: process.env.PG_DB,
-      models: [],
+      models: [
+        Social,
+        Categories,
+        Courier,
+        Admins,
+        Users,
+        SocialUser,
+        Donations,
+      ],
       autoLoadModels: true,
       logging: false,
       sync: { alter: true },
@@ -33,6 +52,14 @@ import { AdminsModule } from './admins/admins.module';
     CourierModule,
 
     AdminsModule,
+
+    UsersModule,
+
+    SocialUserModule,
+
+    DonationsModule,
+
+    NotificationsModule,
   ],
   controllers: [],
   providers: [],
