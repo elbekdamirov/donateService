@@ -19,6 +19,10 @@ import { NotificationsModule } from "./notifications/notifications.module";
 import { RolesModule } from "./roles/roles.module";
 import { AdminRole } from "./admins/models/admin-role.model";
 import { Role } from "./roles/models/role.model";
+import { ProductsModule } from "./products/products.module";
+import { Product } from "./products/models/product.model";
+import { ProductImagesModule } from "./product-images/product-images.module";
+import { ProductImage } from "./product-images/models/product-image.model";
 
 @Module({
   imports: [
@@ -44,6 +48,8 @@ import { Role } from "./roles/models/role.model";
         Donations,
         Role,
         AdminRole,
+        Product,
+        ProductImage,
       ],
       autoLoadModels: true,
       logging: false,
@@ -67,6 +73,10 @@ import { Role } from "./roles/models/role.model";
     NotificationsModule,
 
     RolesModule,
+
+    ProductsModule,
+
+    ProductImagesModule,
   ],
   controllers: [],
   providers: [],
