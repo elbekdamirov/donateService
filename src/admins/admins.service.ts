@@ -1,24 +1,49 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, NotFoundException } from "@nestjs/common";
 import { InjectModel } from "@nestjs/sequelize";
 import { Admins } from "./models/admins.model";
 import { CreateAdminDto } from "./dto/create-admin.dto";
 import { UpdateAdminDto } from "./dto/update-admin.dto";
+import { RolesService } from "../roles/roles.service";
+import { Role } from "../roles/models/role.model";
 
 @Injectable()
 export class AdminsService {
-  constructor(@InjectModel(Admins) private adminsModel: typeof Admins) {}
+  constructor(
+    @InjectModel(Admins) private adminsModel: typeof Admins,
+    private readonly roleService: RolesService
+  ) {}
 
-  async createAdmins(createAdminDto: CreateAdminDto): Promise<Admins> {
-    const admins = await this.adminsModel.create(createAdminDto);
-    return admins;
+  async create(createAdminDto: CreateAdminDto): Promise<Admins> {
+    const role = await this.roleService.findRoleByValue(createAdminDto.name);
+    if (!role) {
+      throw new NotFoundException("Bunday role mavjud emas");
+    }
+    const admin = await this.adminsModel.create(createAdminDto);
+
+    await admin.$set("roles", [role.id]); // AdminRole.create(adminId, roleId)
+    await admin.save();
+
+    return admin;
   }
 
-  async getAllAdmins(): Promise<Admins[]> {
-    return this.adminsModel.findAll();
+  findAll() {
+    return this.adminsModel.findAll({
+      include: {
+        model: Role,
+        attributes: ["id", "name"],
+        through: { attributes: [] },
+      },
+    });
   }
 
   async getAdminsById(id: number): Promise<Admins | null> {
-    return this.adminsModel.findByPk(id);
+    return this.adminsModel.findByPk(id, {
+      include: {
+        model: Role,
+        attributes: ["id", "name"],
+        through: { attributes: [] },
+      },
+    });
   }
 
   async deleteAdminsById(id: number): Promise<string> {

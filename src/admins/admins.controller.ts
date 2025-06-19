@@ -18,12 +18,12 @@ export class AdminsController {
 
   @Post()
   async createAdmins(@Body() createAdminDto: CreateAdminDto): Promise<Admins> {
-    return this.adminsService.createAdmins(createAdminDto);
+    return this.adminsService.create(createAdminDto);
   }
 
   @Get()
   async findAllAdmins(): Promise<Admins[]> {
-    return this.adminsService.getAllAdmins();
+    return this.adminsService.findAll();
   }
 
   @Get(":id")

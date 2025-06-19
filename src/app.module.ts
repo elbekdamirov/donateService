@@ -15,7 +15,10 @@ import { SocialUserModule } from "./social-user/social-user.module";
 import { SocialUser } from "./social-user/models/social-user.model";
 import { DonationsModule } from "./donations/donations.module";
 import { Donations } from "./donations/models/donation.model";
-import { NotificationsModule } from './notifications/notifications.module';
+import { NotificationsModule } from "./notifications/notifications.module";
+import { RolesModule } from "./roles/roles.module";
+import { AdminRole } from "./admins/models/admin-role.model";
+import { Role } from "./roles/models/role.model";
 
 @Module({
   imports: [
@@ -39,6 +42,8 @@ import { NotificationsModule } from './notifications/notifications.module';
         Users,
         SocialUser,
         Donations,
+        Role,
+        AdminRole,
       ],
       autoLoadModels: true,
       logging: false,
@@ -60,6 +65,8 @@ import { NotificationsModule } from './notifications/notifications.module';
     DonationsModule,
 
     NotificationsModule,
+
+    RolesModule,
   ],
   controllers: [],
   providers: [],
