@@ -31,6 +31,8 @@ import { ProductOrdersModule } from "./product-orders/product-orders.module";
 import { ProductOrder } from "./product-orders/models/product-order.model";
 import { PaymentsModule } from "./payments/payments.module";
 import { Payment } from "./payments/models/payment.model";
+import { ProductReviewsModule } from "./product-reviews/product-reviews.module";
+import { ProductReview } from "./product-reviews/models/product-review.model";
 
 @Module({
   imports: [
@@ -62,6 +64,7 @@ import { Payment } from "./payments/models/payment.model";
         SavedItem,
         ProductOrder,
         Payment,
+        ProductReview,
       ],
       autoLoadModels: true,
       logging: false,
@@ -97,6 +100,8 @@ import { Payment } from "./payments/models/payment.model";
     ProductOrdersModule,
 
     PaymentsModule,
+
+    ProductReviewsModule,
   ],
   controllers: [],
   providers: [],
