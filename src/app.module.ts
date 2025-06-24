@@ -27,8 +27,10 @@ import { CreatorStatisticsModule } from "./creator-statistics/creator-statistics
 import { CreatorStatistic } from "./creator-statistics/models/creator-statistic.model";
 import { SavedItemsModule } from "./saved-items/saved-items.module";
 import { SavedItem } from "./saved-items/models/saved-item.model";
-import { ProductOrdersModule } from './product-orders/product-orders.module';
+import { ProductOrdersModule } from "./product-orders/product-orders.module";
 import { ProductOrder } from "./product-orders/models/product-order.model";
+import { PaymentsModule } from "./payments/payments.module";
+import { Payment } from "./payments/models/payment.model";
 
 @Module({
   imports: [
@@ -58,7 +60,8 @@ import { ProductOrder } from "./product-orders/models/product-order.model";
         ProductImage,
         CreatorStatistic,
         SavedItem,
-        ProductOrder
+        ProductOrder,
+        Payment,
       ],
       autoLoadModels: true,
       logging: false,
@@ -92,6 +95,8 @@ import { ProductOrder } from "./product-orders/models/product-order.model";
     SavedItemsModule,
 
     ProductOrdersModule,
+
+    PaymentsModule,
   ],
   controllers: [],
   providers: [],
