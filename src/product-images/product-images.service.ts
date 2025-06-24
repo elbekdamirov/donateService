@@ -3,15 +3,22 @@ import { InjectModel } from "@nestjs/sequelize";
 import { CreateProductImageDto } from "./dto/create-product-image.dto";
 import { UpdateProductImageDto } from "./dto/update-product-image.dto";
 import { ProductImage } from "./models/product-image.model";
+import { FilesService } from "../files/files.service";
 
 @Injectable()
 export class ProductImagesService {
   constructor(
-    @InjectModel(ProductImage) private productImageModel: typeof ProductImage
+    @InjectModel(ProductImage) private productImageModel: typeof ProductImage,
+    private readonly fileService: FilesService
   ) {}
 
-  async create(createProductImageDto: CreateProductImageDto) {
-    return await this.productImageModel.create(createProductImageDto);
+  async create(createProductImageDto: CreateProductImageDto, image: any) {
+    const fileName = await this.fileService.saveFile(image);
+
+    return await this.productImageModel.create({
+      ...createProductImageDto,
+      image: fileName,
+    });
   }
 
   async findAll() {

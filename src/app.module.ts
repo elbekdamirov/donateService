@@ -35,12 +35,18 @@ import { ProductReviewsModule } from "./product-reviews/product-reviews.module";
 import { ProductReview } from "./product-reviews/models/product-review.model";
 import { WithdrawsModule } from "./withdraws/withdraws.module";
 import { Withdraw } from "./withdraws/model/withdraw.model";
+import { ServeStaticModule } from "@nestjs/serve-static";
+import { join } from "path";
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       envFilePath: ".env",
       isGlobal: true,
+    }),
+
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, "..", "static"),
     }),
 
     SequelizeModule.forRoot({

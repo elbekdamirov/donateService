@@ -10,7 +10,7 @@ import { Product } from "../../products/models/product.model";
 
 interface IProductImageCreationAttr {
   productId: number;
-  image_url: string;
+  image?: string;
   is_main: boolean;
 }
 
@@ -38,9 +38,8 @@ export class ProductImage extends Model<
 
   @Column({
     type: DataType.STRING,
-    allowNull: false,
   })
-  image_url: string;
+  image: string;
 
   @Column({
     type: DataType.BOOLEAN,
