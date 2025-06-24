@@ -23,6 +23,12 @@ import { ProductsModule } from "./products/products.module";
 import { Product } from "./products/models/product.model";
 import { ProductImagesModule } from "./product-images/product-images.module";
 import { ProductImage } from "./product-images/models/product-image.model";
+import { CreatorStatisticsModule } from "./creator-statistics/creator-statistics.module";
+import { CreatorStatistic } from "./creator-statistics/models/creator-statistic.model";
+import { SavedItemsModule } from "./saved-items/saved-items.module";
+import { SavedItem } from "./saved-items/models/saved-item.model";
+import { ProductOrdersModule } from './product-orders/product-orders.module';
+import { ProductOrder } from "./product-orders/models/product-order.model";
 
 @Module({
   imports: [
@@ -50,6 +56,9 @@ import { ProductImage } from "./product-images/models/product-image.model";
         AdminRole,
         Product,
         ProductImage,
+        CreatorStatistic,
+        SavedItem,
+        ProductOrder
       ],
       autoLoadModels: true,
       logging: false,
@@ -77,6 +86,12 @@ import { ProductImage } from "./product-images/models/product-image.model";
     ProductsModule,
 
     ProductImagesModule,
+
+    CreatorStatisticsModule,
+
+    SavedItemsModule,
+
+    ProductOrdersModule,
   ],
   controllers: [],
   providers: [],
